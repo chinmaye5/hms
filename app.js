@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');  // ✅ Import CORS
 const connectDB = require('./config/db');
 
 // Load environment variables
@@ -9,6 +10,9 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+// ✅ Enable CORS before defining routes
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 // Middleware
 app.use(express.json());
